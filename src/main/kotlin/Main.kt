@@ -26,4 +26,6 @@ suspend fun main(args: Array<String>)
                 letterSquareState.NOT_IN_WORD->print("${it.value.first}X")
             }
         }
+
+    println("\n $checkWord")
 }

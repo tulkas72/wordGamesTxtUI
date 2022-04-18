@@ -5,7 +5,7 @@ import java.io.FileNotFoundException
 class WordListReader
 {
     private val letters: List<String> =
-        listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
+        listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","ñ","p","q","r","s","t","u","v","w","x","y","z")
 
     fun readList(fileName: String): MutableList<String> {
         val filename = this::class.java.getResource("/$fileName")?.path
