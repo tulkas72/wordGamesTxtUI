@@ -17,6 +17,8 @@ dependencies {
     testImplementation(kotlin("test"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.1")
+    implementation("org.hexworks.zircon:zircon.core-jvm:2021.1.0-RELEASE")
+    implementation("org.hexworks.zircon:zircon.jvm.swing:2021.1.0-RELEASE")
 }
 
 tasks.test {
