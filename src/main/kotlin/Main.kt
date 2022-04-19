@@ -32,12 +32,18 @@ suspend fun main(args: Array<String>)
             }
         }
     println("\n $checkWord")
-    val json=wordle.serialize()
+    val json=wordle.jsonSerialize()
+    val yaml=wordle.yamlSerialize()
 
-    val wordleFile = File("wordleConfig.json").also {
+    var wordleFile = File("wordleConfig.json").also {
         it.writeText(json)
     }
+
     val json2=wordleFile.readText()
     val wordleConfig= Json.decodeFromString<WordGameConfig>(json2)
+
+    wordleFile= File("wordleConfig.yml").also {
+        it.writeText(yaml)
+    }
     print(wordleConfig)
 }

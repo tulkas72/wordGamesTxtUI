@@ -1,0 +1,3 @@
+gameName: "Wordle"
+wordLength: 5
+maxTrials: 6

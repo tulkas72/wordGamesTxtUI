@@ -1,5 +1,6 @@
 package wordGames
 import WordGamesConfig.WordGameConfig
+import com.charleskorn.kaml.Yaml
 import wordCatalog.ListWordCatalog
 import wordCatalog.WordCatalog
 
@@ -123,10 +124,16 @@ class Wordle: WordGame
         return true
     }
 
-    fun serialize(): String
+    fun jsonSerialize(): String
     {
         val json = Json.encodeToString(WordGameConfig(gameName,wordLength,maxTrials))
         return json
+    }
+
+    fun yamlSerialize():String
+    {
+        val yamlTextval  = Yaml.default.encodeToString(WordGameConfig.serializer(), WordGameConfig(gameName,wordLength,maxTrials))
+        return yamlTextval
     }
 
 }

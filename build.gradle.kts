@@ -21,6 +21,7 @@ dependencies {
     implementation("org.hexworks.zircon:zircon.core-jvm:2021.1.0-RELEASE")
     implementation("org.hexworks.zircon:zircon.jvm.swing:2021.1.0-RELEASE")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation("com.charleskorn.kaml:kaml:0.43.0") // Get the latest version number from https://github.com/charleskorn/kaml/releases/latest
 }
 
 tasks.test {
