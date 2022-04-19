@@ -1,13 +1,16 @@
 package wordGames
+import WordGamesConfig.WordGameConfig
 import wordCatalog.ListWordCatalog
 import wordCatalog.WordCatalog
 
 import kotlinx.coroutines.launch
 
 import kotlinx.coroutines.*
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 
 
-abstract class WordGames
+abstract class WordGame
 {
     var wordCatalog: WordCatalog
     protected val gameName:String
@@ -76,7 +79,7 @@ class WordleResult
 
 }
 
-class Wordle: WordGames
+class Wordle: WordGame
 {
     private var guessResult: MutableMap<Int,Pair<Char,letterSquareState> > = mutableMapOf()
 
@@ -96,16 +99,14 @@ class Wordle: WordGames
         for(i in 0 until wordLength)
         {
             if(word[i]==guessWord[i])
-            {
-                guessResult[i] = Pair(word[i],letterSquareState.IN_SPOT)
-            }
+               {  guessResult[i] = Pair(word[i],letterSquareState.IN_SPOT)  }
             else
-            {
-                if(lettersPositions.containsKey(guessWord[i]))
-                   { guessResult[i] = Pair(guessWord[i],letterSquareState.WRONG_SPOT) }
-                else
-                   {  guessResult[i] = Pair(guessWord[i],letterSquareState.NOT_IN_WORD) }
-            }
+               {
+                    if(lettersPositions.containsKey(guessWord[i]))
+                       { guessResult[i] = Pair(guessWord[i],letterSquareState.WRONG_SPOT) }
+                    else
+                       {  guessResult[i] = Pair(guessWord[i],letterSquareState.NOT_IN_WORD) }
+               }
         }
         return guessResult
     }
@@ -121,8 +122,14 @@ class Wordle: WordGames
         }
         return true
     }
-}
 
+    fun serialize(): String
+    {
+        val json = Json.encodeToString(WordGameConfig(gameName,wordLength,maxTrials))
+        return json
+    }
+
+}
 
 
 enum class letterSquareState
@@ -133,8 +140,7 @@ enum class letterSquareState
 }
 
 
-
-class Hangman: WordGames
+class Hangman: WordGame
 {
     constructor(maxTrials: Int,
                 wordLength: Int = 5,

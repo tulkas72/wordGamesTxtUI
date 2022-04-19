@@ -2,7 +2,7 @@ import java.io.File
 import java.io.FileNotFoundException
 
 
-class WordListReader
+class WordCatalogReader
 {
     private val letters: List<String> =
         listOf("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","ñ","p","q","r","s","t","u","v","w","x","y","z")

@@ -1,6 +1,6 @@
 package wordCatalog
 
-import WordListReader
+import WordCatalogReader
 
 
 interface WordCatalog
@@ -22,7 +22,7 @@ interface WordCatalog
 class ListWordCatalog: WordCatalog
 {
     private val words = mutableListOf<String>()
-    private val wordListReader = WordListReader()
+    private val wordCatalogReader = WordCatalogReader()
     override var wordLength: Int? = null
     var size: Int = words.size
         get() = words.size
@@ -37,7 +37,7 @@ class ListWordCatalog: WordCatalog
 
     override suspend fun load(fileName: String)
     {
-        words.addAll(wordListReader.readList(fileName))
+        words.addAll(wordCatalogReader.readList(fileName))
 
     }
 

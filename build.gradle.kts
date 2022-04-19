@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.6.20"
     application
+    kotlin("plugin.serialization") version "1.6.20"
 }
 
 group = "me.jmsa"
@@ -19,6 +20,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.6.1")
     implementation("org.hexworks.zircon:zircon.core-jvm:2021.1.0-RELEASE")
     implementation("org.hexworks.zircon:zircon.jvm.swing:2021.1.0-RELEASE")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 }
 
 tasks.test {

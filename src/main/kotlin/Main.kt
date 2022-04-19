@@ -1,7 +1,10 @@
+import WordGamesConfig.WordGameConfig
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import wordCatalog.ListWordCatalog
 import wordGames.Wordle
 import wordGames.letterSquareState
-
+import java.io.File
 
 
 suspend fun main(args: Array<String>)
@@ -28,6 +31,13 @@ suspend fun main(args: Array<String>)
                 letterSquareState.NOT_IN_WORD->print("${it.value.first}X")
             }
         }
-
     println("\n $checkWord")
+    val json=wordle.serialize()
+
+    val wordleFile = File("wordleConfig.json").also {
+        it.writeText(json)
+    }
+    val json2=wordleFile.readText()
+    val wordleConfig= Json.decodeFromString<WordGameConfig>(json2)
+    print(wordleConfig)
 }

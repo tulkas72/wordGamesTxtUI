@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
 
-internal class WordListReaderTest {
+internal class WordCatalogReaderTest {
 
     @Test
     fun readList() {
