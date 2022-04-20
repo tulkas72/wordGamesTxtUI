@@ -11,6 +11,9 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
+typealias wordleGuess = MutableMap<Int,Pair<Char,letterSquareState> >
+
+
 abstract class WordGame
 {
     var wordCatalog: WordCatalog
@@ -21,7 +24,7 @@ abstract class WordGame
     protected var word:String = ""
     protected open lateinit var lettersPositions: MutableMap<Char,MutableList<Int>>
     protected var maxTrials:Int
-
+    protected var listOfMoves= mutableListOf<wordleGuess>()
 
     constructor(gameName: String,
                 maxTrials:Int=6,
@@ -73,7 +76,6 @@ abstract class WordGame
 }
 
 
-typealias wordleGuess = MutableMap<Int,Pair<Char,letterSquareState> >
 
 class WordleResult
 {
