@@ -5,7 +5,9 @@ import wordCatalog.ListWordCatalog
 import wordGames.Wordle
 import wordGames.letterSquareState
 import java.io.File
-
+import com.github.doyaaaaaken.kotlincsv.*
+import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
+import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 
 suspend fun main(args: Array<String>)
 {
@@ -46,4 +48,16 @@ suspend fun main(args: Array<String>)
         it.writeText(yaml)
     }
     print(wordleConfig)
+
+    val writer = csvWriter {
+        charset = "UTF-8"
+        delimiter = '\t'
+        nullCode = "NULL"
+        lineTerminator = "\n"
+        outputLastLineTerminator = true
+        quote {
+            mode = WriteQuoteMode.ALL
+            char = '\''
+        }
+    }
 }
