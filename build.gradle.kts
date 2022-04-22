@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm") version "1.6.20"
     application
     kotlin("plugin.serialization") version "1.6.20"
+    id("org.jetbrains.dokka") version "1.6.10"
 }
 
 group = "me.jmsa"
@@ -31,6 +32,10 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "15"
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(buildDir.resolve("dokka"))
 }
 
 application {

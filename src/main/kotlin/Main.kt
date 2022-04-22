@@ -9,6 +9,11 @@ import com.github.doyaaaaaken.kotlincsv.*
 import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 
+/**
+ * Main
+ *
+ * @param args
+ */
 suspend fun main(args: Array<String>)
 {
     println("Hello World!")

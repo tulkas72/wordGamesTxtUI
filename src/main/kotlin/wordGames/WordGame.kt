@@ -10,9 +10,7 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-
 typealias wordleGuess = MutableMap<Int,Pair<Char,letterSquareState> >
-
 
 abstract class WordGame
 {
@@ -62,6 +60,7 @@ abstract class WordGame
             }
         }
     }
+
     // This two methods are unnecessary, but they are here to show it is possible if we want to change the game
     // instructions or description from outside the class hierarchy
     protected open fun setInstructions(instructions: String)
@@ -76,11 +75,11 @@ abstract class WordGame
 }
 
 
-
 class WordleResult
 {
 
 }
+
 
 class Wordle: WordGame
 {
@@ -139,7 +138,6 @@ class Wordle: WordGame
     }
 
 }
-
 
 enum class letterSquareState
 {
