@@ -33,7 +33,8 @@ suspend fun main(args: Array<String>)
 
     checkWord.forEach {
         when(it.value.second)
-            { letterSquareState.IN_SPOT->print("${it.value.first}*")
+            {
+                letterSquareState.IN_SPOT->print("${it.value.first}*")
                 letterSquareState.WRONG_SPOT->print("${it.value.first}-")
                 letterSquareState.NOT_IN_WORD->print("${it.value.first}X")
             }
