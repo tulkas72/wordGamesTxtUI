@@ -50,7 +50,7 @@ suspend fun main(args: Array<String>)
     val json2=wordleFile.readText()
     val wordleConfig= Json.decodeFromString<WordGameConfig>(json2)
 
-    wordleFile= File("wordleConfig.yml").also {
+    File("wordleConfig.yml").also {
         it.writeText(yaml)
     }
     print(wordleConfig)
