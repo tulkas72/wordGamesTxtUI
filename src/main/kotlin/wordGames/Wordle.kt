@@ -60,7 +60,7 @@ class Wordle: WordGame
     fun jsonSerialize(): String
     {
         imporExport= WordGameJsonImportExport(WordGameConfig(gameName, wordLength, maxTrials))
-        val json = Json.encodeToString(WordGameConfig(gameName, wordLength, maxTrials))
+        val json = imporExport.serialize()
         return json
     }
 
