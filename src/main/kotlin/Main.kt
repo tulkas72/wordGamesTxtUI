@@ -1,11 +1,10 @@
-import WordGamesConfig.WordGameConfig
+import wordGamesConfig.WordGameConfig
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import wordCatalog.ListWordCatalog
 import wordGames.Wordle
 import wordGames.letterSquareState
 import java.io.File
-import com.github.doyaaaaaken.kotlincsv.*
 import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 

@@ -1,11 +1,9 @@
 package wordGames
 
-import WordGamesConfig.WordGameConfig
-import WordGamesConfig.WordGameImporExport
-import WordGamesConfig.WordGameJsonImportExport
+import wordGamesConfig.WordGameConfig
+import wordGamesConfig.WordGameImporExport
+import wordGamesConfig.WordGameJsonImportExport
 import com.charleskorn.kaml.Yaml
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import wordCatalog.ListWordCatalog
 import wordCatalog.WordCatalog
 
@@ -57,20 +55,17 @@ class Wordle: WordGame
         return true
     }
 
-    fun jsonSerialize(): String
+    fun jsonSerialize(): String // TODO:  To disk?
     {
-        imporExport= WordGameJsonImportExport(WordGameConfig(gameName, wordLength, maxTrials))
-        val json = imporExport.serialize()
-        return json
+        imporExport = WordGameJsonImportExport(WordGameConfig(gameName, wordLength, maxTrials))
+        return imporExport.serialize()
     }
 
-    fun yamlSerialize():String
+    fun yamlSerialize(): String // TODO:  To disk?
     {
-        val yamlTextval  = Yaml.default.encodeToString(
-            WordGameConfig.serializer(),
-            WordGameConfig(gameName, wordLength, maxTrials)
-        )
-        return yamlTextval
+        return Yaml.default.encodeToString(
+               WordGameConfig.serializer(),
+               WordGameConfig(gameName, wordLength, maxTrials))
     }
 
 }

@@ -1,4 +1,4 @@
-package WordGamesConfig
+package wordGamesConfig
 import kotlinx.serialization.*
 
 
