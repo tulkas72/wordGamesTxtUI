@@ -22,7 +22,7 @@ class WordGameJsonImportExport(override val wordGameConfig: WordGameConfig,
         wordleFile.also {it.writeText(json)}
     }
 
-    override fun deserialize(jsonTxt: String): WordGameConfig = Json.decodeFromString(jsonTxt)
+    override fun deserialize(serializedTxt: String): WordGameConfig = Json.decodeFromString(serializedTxt)
 
     override fun deserializeFromDisk(): WordGameConfig = this.deserialize(wordleFile.readText())
 }

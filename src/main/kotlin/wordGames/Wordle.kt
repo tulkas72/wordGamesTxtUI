@@ -26,6 +26,7 @@ class Wordle: WordGame
         gameInstructions = "Draw a word by clicking on the letters.  The letters will be removed from the board."
     }
 
+
     fun checkWord(guessWord: String): wordleGuess
     {
         for(i in 0 until wordLength)
@@ -43,6 +44,7 @@ class Wordle: WordGame
         return guessResult
     }
 
+
     fun correctGuess(guessWord: String): Boolean
     {
         checkWord(guessWord)
@@ -55,11 +57,13 @@ class Wordle: WordGame
         return true
     }
 
+
     fun jsonSerialize(): String // TODO:  To disk?
     {
         imporExport = WordGameJsonImportExport(WordGameConfig(gameName, wordLength, maxTrials))
         return imporExport.serialize()
     }
+
 
     fun yamlSerialize(): String // TODO:  To disk?
     {

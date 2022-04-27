@@ -52,6 +52,7 @@ suspend fun main(args: Array<String>)
     File("wordleConfig.yml").also {
         it.writeText(yaml)
     }
+
     print(wordleConfig)
 
     val writer = csvWriter {

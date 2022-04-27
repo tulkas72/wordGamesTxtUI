@@ -4,6 +4,6 @@ abstract class WordGameImporExport(open val wordGameConfig: WordGameConfig, open
 {
     abstract fun serialize(): String
     abstract fun serializeToDisk(fileName: String)
-    abstract fun deserialize(jsonTxt: String): WordGameConfig
+    abstract fun deserialize(serializedTxt: String): WordGameConfig
     abstract fun deserializeFromDisk(): WordGameConfig
 }
