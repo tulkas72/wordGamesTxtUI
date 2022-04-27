@@ -11,18 +11,13 @@ class WordGameJsonImportExport(override val wordGameConfig: WordGameConfig,
 {
     val wordleFile= File(fileName)
 
-    override fun serialize(): String
-    {
-        return Json.encodeToString(wordGameConfig)
-    }
+    override fun serialize(): String = Json.encodeToString(wordGameConfig)
 
     override fun serializeToDisk(fileName: String) //quitar parámetro
     {
-        val json=this.serialize()
-        wordleFile.also {it.writeText(json)}
+          wordleFile.also {it.writeText(this.serialize())}
     }
 
     override fun deserialize(serializedTxt: String): WordGameConfig = Json.decodeFromString(serializedTxt)
-
     override fun deserializeFromDisk(): WordGameConfig = this.deserialize(wordleFile.readText())
 }

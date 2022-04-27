@@ -1,0 +1,30 @@
+* TODO ¿? Reflection over data classes
+We can use reflection to obtain a list of the attributes of a data class and serialize to csv more easily:
+** Solution using reflection
+- Include kotlin-reflect
+
+#+begin_src kotlin
+// Gradle Groovy DLS
+implementation "org.jetbrains.kotlin:kotlin-reflect:${kotlin_version}"
+
+// Gradle Kotlin DLS
+implementation(kotlin("reflect"))
+#+end_src
+
+- Suppose the following case
+#+begin_src kotlin
+data class DataClass(val a: String, val b: String, val c: String, val d: String, val e: String)
+
+val instance = DataClass("A", "B", "C", "D", "E")
+
+DataClass::class.memberProperties.forEach { member ->
+    val name = member.name
+    val value = member.get(instance) as String
+    findTextViewByName(name).text = value
+}
+
+#+end_src
+
+It's up to you to implement findTextViewByName function
+
+* TODO ¿? Install GitHub CLI

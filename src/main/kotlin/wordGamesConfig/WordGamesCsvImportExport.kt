@@ -1,11 +1,12 @@
 package wordGamesConfig
 
+import com.floern.castingcsv.castingCSV
 import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import java.io.File
 
 class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
-                               fileName: String = "wordleConfig.yml",
+                               fileName: String = "wordleConfig.csv",
                               ) : WordGameImporExport(wordGameConfig, fileName)
 
 {
@@ -24,6 +25,7 @@ class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
         }
         str1=str1.substring(0, str1.length-1)+"\n"
         str2=str2.substring(0,str2.length-1)+"\n"
+
         return str1+str2
     }
 
@@ -34,6 +36,7 @@ class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
 
     override fun deserialize(serializedTxt: String): WordGameConfig {
         TODO("Not yet implemented")
+        val tmp2 = castingCSV().fromCSV<WordGameConfig>(wordleFile)
     }
 
     override fun deserializeFromDisk(): WordGameConfig {
