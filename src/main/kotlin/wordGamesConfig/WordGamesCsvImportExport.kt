@@ -13,7 +13,18 @@ class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
 
     override fun serialize(): String
     {
-        TODO("Not yet implemented")
+        val tmp= wordGameConfig.toString().replace("WordGameConfig(", "").replace(")", "")
+        val lista= tmp.split(",")
+        var str1:String=""
+        var str2:String=""
+        for(ele in lista)
+        {
+            str1+=ele.split("=")[0]+","
+            str2+=ele.split("=")[1]+","
+        }
+        str1=str1.substring(0, str1.length-1)+"\n"
+        str2=str2.substring(0,str2.length-1)+"\n"
+        return str1+str2
     }
 
     override fun serializeToDisk(fileName: String)

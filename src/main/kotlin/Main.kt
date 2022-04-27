@@ -7,6 +7,7 @@ import wordGames.letterSquareState
 import java.io.File
 import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
+import wordGamesConfig.WordGamesCsvImportExport
 
 /**
  * Main
@@ -54,6 +55,8 @@ suspend fun main(args: Array<String>)
     }
 
     print(wordleConfig)
+    println("CSV")
+    print(WordGamesCsvImportExport(wordleConfig).serialize())
 
     val writer = csvWriter {
         charset = "UTF-8"
