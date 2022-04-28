@@ -1,8 +1,6 @@
 package wordGamesConfig
 
 import com.floern.castingcsv.castingCSV
-import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
-import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import java.io.File
 
 class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
@@ -10,15 +8,14 @@ class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
                               ) : WordGameImporExport(wordGameConfig, fileName)
 
 {
-    val wordleFile= File(fileName)
 
     override fun serialize(): String
     {
         val tmp= wordGameConfig.toString().replace("WordGameConfig(", "").replace(")", "")
-        val lista= tmp.split(",")
+        val lst= tmp.split(",")
         var str1:String=""
         var str2:String=""
-        for(ele in lista)
+        for(ele in lst)
         {
             str1+=ele.split("=")[0]+","
             str2+=ele.split("=")[1]+","
@@ -31,12 +28,15 @@ class WordGamesCsvImportExport(override val wordGameConfig: WordGameConfig,
 
     override fun serializeToDisk(fileName: String)
     {
-        TODO("Not yet implemented")
+        val str=this.serialize()
+        val lst= str.split("\n")
+        castingCSV().toCSV(lst, wordGameFile.outputStream())
+
     }
 
     override fun deserialize(serializedTxt: String): WordGameConfig {
         TODO("Not yet implemented")
-        val tmp2 = castingCSV().fromCSV<WordGameConfig>(wordleFile)
+        val tmp2 = castingCSV().fromCSV<WordGameConfig>(wordGameFile)
     }
 
     override fun deserializeFromDisk(): WordGameConfig {
