@@ -25,6 +25,8 @@ dependencies {
     implementation("com.charleskorn.kaml:kaml:0.43.0") // Get the latest version number from https://github.com/charleskorn/kaml/releases/latest
     implementation("com.github.doyaaaaaken:kotlin-csv-jvm:1.2.0") //for JVM platform
     implementation("com.floern.castingcsv:casting-csv-kt:1.2")
+    implementation("mysql:mysql-connector-java:8.0.28")
+    implementation("org.xerial:sqlite-jdbc:3.35.0.1")
 }
 
 tasks.test {
