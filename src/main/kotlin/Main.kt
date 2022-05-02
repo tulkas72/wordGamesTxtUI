@@ -7,8 +7,9 @@ import wordGames.letterSquareState
 import java.io.File
 import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
-import dataBases.DBConnect
+import dataBases.DBAccess
 import dataBases.DBConnectType
+import dataBases.Player
 import wordGamesConfig.WordGamesCsvImportExport
 import java.sql.DriverManager
 
@@ -72,12 +73,22 @@ suspend fun main(args: Array<String>)
             char = '\''
         }
     }
-    //var dbConnection=DBConnect("wordGames.sqlite",DBConnectType.SQLITE)
-    var connection = DriverManager.getConnection("jdbc:sqlite:wordGames.sqlite")
-    var statement = connection.createStatement()
-    var resultSet = statement.executeQuery("SELECT * FROM Player")
-    while (resultSet.next())
-    {
-        println(resultSet.getString("name")+" "+ resultSet.getString("nickname"))
+    var connect=DBAccess("wordGames.sqlite",DBConnectType.SQLITE)
+    var players:List<Player> = connect.listPlayers()
+
+    players.forEach {
+        println(it)
     }
+
+    val games=connect.listGames()
+    games.forEach {
+        println(it)
+    }
+
+    val matches=connect.listMatches()
+    matches.forEach {
+        println(it)
+    }
+
+    connect.close()
 }
