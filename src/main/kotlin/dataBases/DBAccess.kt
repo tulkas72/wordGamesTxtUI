@@ -115,7 +115,14 @@ open class DBAccess
             val win_loss = result.getInt("win_loss")
             val word = result.getString("word")
             val score = result.getInt("score")
-            val gameDate  = LocalDate.parse(result.getString("game_date").toString())
+
+            val gameDate:LocalDate =
+                when(dbType)
+                {
+                   DBConnectType.SQLITE -> LocalDate.parse(result.getString("game_date").toString())
+
+                   else -> result.getDate("game_date").toLocalDate()
+                }
 
             matches.add(MatchWithNames(id, gameName, playerName, win_loss, word, score, gameDate))
         }

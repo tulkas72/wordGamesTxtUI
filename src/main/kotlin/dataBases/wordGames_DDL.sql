@@ -32,3 +32,29 @@ create table Match
     foreign key (gameId) references Game (id),
     foreign key (playerId) references Player (id)
 );
+
+insert into Player ( name, nickname, email)
+values ( 'jmsa', 'tulkas', 'jsanalv344@g.educaand.es');
+
+
+insert into Player ( name, nickname, email)
+values ( 'player1', 'player1', 'player1@wordgames.com'),
+       ( 'player2', 'player2', 'player2@wordgames.com'),
+       ( 'player3', 'player3', 'player3@wordgames.com'),
+       ( 'player4', 'player4', 'player4@wordgames.com'),
+       ( 'player5', 'player5', 'player5@wordgames.com');
+
+
+insert into Game(name,rules,lastWord)
+values ('Wordle','rules1','orden'),
+       ('Hangman','rules2','banana');
+
+
+insert into `Match`(gameId,playerId,win_loss,score, game_date)
+values (1,1,1,4,'2018-01-01'),
+       (1,1,1,3,'2018-01-01'),
+       (2,1,1,5,'2018-15-01'),
+       (3,1,0,7,'2018-15-11'),
+       (4,1,0,7,'2018-15-11'),
+       (5,1,0,7,'2018-15-11'),
+       (6,1,1,6,'2018-15-11');
