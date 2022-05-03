@@ -50,11 +50,11 @@ values ('Wordle','rules1','orden'),
        ('Hangman','rules2','banana');
 
 
-insert into `Match`(gameId,playerId,win_loss,score, game_date)
+insert into Match(playerId,gameId,win_loss,score, game_date)
 values (1,1,1,4,'2018-01-01'),
        (1,1,1,3,'2018-01-01'),
-       (2,1,1,5,'2018-15-01'),
+       (2,2,1,5,'2018-15-01'),
        (3,1,0,7,'2018-15-11'),
-       (4,1,0,7,'2018-15-11'),
+       (4,2,0,7,'2018-15-11'),
        (5,1,0,7,'2018-15-11'),
        (6,1,1,6,'2018-15-11');

@@ -73,7 +73,8 @@ suspend fun main(args: Array<String>)
             char = '\''
         }
     }
-    var connect=DBAccess("wordGames.sqlite",DBConnectType.SQLITE)
+    var connect=DBAccess("WordGames",DBConnectType.SQLITE)
+    //    var connect=DBAccess("WordGames",DBConnectType.MYSQL,"wordGames","wordGames")
     var players:List<Player> = connect.listPlayers()
 
     players.forEach {

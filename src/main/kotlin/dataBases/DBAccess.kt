@@ -32,12 +32,14 @@ open class DBAccess
                 connection = DriverManager.getConnection(url)
             }
             else->{
-                this.url = dbType.baseUrl + "//" + dbName
+                this.url = dbType.baseUrl + "/" + dbName
                 connection = DriverManager.getConnection(url, dbUser, dbPass)
             }
         }
         //require(connection != null) { "Error connecting to database" }
         //^^ that line over here allows us to get rid of the ifs testing for null in listing functions
+        // Oracle Connection conn = DriverManager.getConnection
+        //  ("jdbc:oracle:thin:@myhost:1521:orcl", "scott", "tiger");
     }
 
     fun listPlayers(): List<Player>
@@ -105,7 +107,10 @@ open class DBAccess
         // of players and games in other two queries
         val query: PreparedStatement?
         query =
-            connection?.prepareStatement("SELECT Match.id, Player.name as pname, Game.name as gname, win_loss, word, score, game_date FROM Match, Player, Game WHERE Match.playerId = Player.id AND Match.gameId = Game.id")
+            connection?.prepareStatement("SELECT Match.id, Player.name as pname, Game.name as gname," +
+                                         " win_loss, word, score, game_date " +
+                                         " FROM Match, Player, Game" +
+                                         " WHERE Match.playerId = Player.id AND Match.gameId = Game.id")
 
         val result = query?.executeQuery()
         while (result?.next() == true) {
