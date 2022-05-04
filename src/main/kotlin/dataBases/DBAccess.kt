@@ -1,7 +1,6 @@
 package dataBases
 import java.sql.DriverManager
 import java.sql.Connection
-import java.sql.Date
 import java.sql.PreparedStatement
 import java.time.LocalDate
 
@@ -99,18 +98,18 @@ open class DBAccess
         return games
     }
 
-    fun listMatches(): List<MatchWithNames>
+    fun listMatches(): List<MatchesWithNames>
     {
-        val matches = mutableListOf<MatchWithNames>()
+        val matches = mutableListOf<MatchesWithNames>()
         //Another option for this is to use a join query,
         // or query only Matches and then query for the name
         // of players and games in other two queries
         val query: PreparedStatement?
         query =
-            connection?.prepareStatement("SELECT Match.id, Player.name as pname, Game.name as gname," +
+            connection?.prepareStatement("SELECT Matches.id, Player.name as pname, Game.name as gname," +
                                          " win_loss, word, score, game_date " +
-                                         " FROM Match, Player, Game" +
-                                         " WHERE Match.playerId = Player.id AND Match.gameId = Game.id")
+                                         " FROM Matches, Player, Game" +
+                                         " WHERE Matches.playerId = Player.id AND Matches.gameId = Game.id")
 
         val result = query?.executeQuery()
         while (result?.next() == true) {
@@ -129,7 +128,7 @@ open class DBAccess
                    else -> result.getDate("game_date").toLocalDate()
                 }
 
-            matches.add(MatchWithNames(id, gameName, playerName, win_loss, word, score, gameDate))
+            matches.add(MatchesWithNames(id, gameName, playerName, win_loss, word, score, gameDate))
         }
 
         return matches
@@ -146,16 +145,16 @@ open class DBAccess
 
 enum class DBConnectType(val baseUrl: String)
 {
-    MYSQL("jdbc:mysql://localhost:3306/"),
+    MYSQL("jdbc:mysql://localhost:3306"),
     SQLITE("jdbc:sqlite:"), // File name, incuding path, must be added later in code
-    POSTGRESQL("jdbc:postgresql://localhost:5432/"),
+    POSTGRESQL("jdbc:postgresql://localhost:5432"),
     ORACLE("jdbc:oracle:thin:@localhost:1521:"), //Tested up to here
     NOT_SET(""),
 
-    MONGODB("mongodb://localhost:27017/"), // Untested
-    REDIS("redis://localhost:6379/"), // Untested
-    MEMCACHED("memcached://localhost:11211/"), // Untested
-    CASSANDRA("cassandra://localhost:9042/"), // Untested
-    ELASTICSEARCH("elasticsearch://localhost:9200/"),
-    MAPDB("mapdb://localhost:9000/") // Untested
+    MONGODB("mongodb://localhost:27017"), // Untested
+    REDIS("redis://localhost:6379"), // Untested
+    MEMCACHED("memcached://localhost:11211"), // Untested
+    CASSANDRA("cassandra://localhost:9042"), // Untested
+    ELASTICSEARCH("elasticsearch://localhost:9200"),
+    MAPDB("mapdb://localhost:9000") // Untested
 }
