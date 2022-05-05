@@ -28,3 +28,5 @@ DataClass::class.memberProperties.forEach { member ->
 It's up to you to implement findTextViewByName function
 
 * TODO ¿? Install GitHub CLI
+
+* TODO UI with Zircon
