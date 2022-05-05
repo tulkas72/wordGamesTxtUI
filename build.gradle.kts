@@ -27,6 +27,9 @@ dependencies {
     implementation("com.floern.castingcsv:casting-csv-kt:1.2")
     implementation("mysql:mysql-connector-java:8.0.28")
     implementation("org.xerial:sqlite-jdbc:3.35.0.1")
+    implementation("org.jetbrains.exposed", "exposed-core", "0.38.1")
+    implementation("org.jetbrains.exposed", "exposed-dao", "0.38.1")
+    implementation("org.jetbrains.exposed", "exposed-jdbc", "0.38.1")
 }
 
 tasks.test {
