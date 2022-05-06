@@ -10,14 +10,14 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import dataBases.DBAccess
 import dataBases.DBConnectType
 import dataBases.Player
+import org.hexworks.zircon.api.*
 import wordGamesConfig.WordGamesCsvImportExport
 
-import org.hexworks.zircon.api.CP437TilesetResources
-import org.hexworks.zircon.api.ColorThemes
-import org.hexworks.zircon.api.Components
-import org.hexworks.zircon.api.SwingApplications
 import org.hexworks.zircon.api.application.AppConfig
+import org.hexworks.zircon.api.data.Position
+import org.hexworks.zircon.api.data.Tile
 import org.hexworks.zircon.api.extensions.toScreen
+import org.hexworks.zircon.api.graphics.TileGraphics
 
 /**
  * Main
@@ -113,6 +113,16 @@ suspend fun main(args: Array<String>)
             .withText("Hello, Zircon!")
             .withPosition(23, 10)
     )
+
+     val graphics: TileGraphics = DrawSurfaces.tileGraphicsBuilder()
+        .withSize(40, 40)
+        .withTileset(CP437TilesetResources.rexPaint16x16())
+        .withFiller(Tile.newBuilder()
+            .withCharacter('x')
+            .build())
+        .build();
+
+    screen.draw(graphics, Position.zero(),graphics.size)
 
     screen.display()
     screen.theme = ColorThemes.arc()
