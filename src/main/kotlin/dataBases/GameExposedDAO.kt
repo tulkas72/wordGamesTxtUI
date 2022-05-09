@@ -1,0 +1,5 @@
+package dataBases
+
+class GameExposedDAO
+{
+}

@@ -37,7 +37,7 @@ class MatchesDAO(private val connect: Connection, private val dbType: DBConnectT
         }
         catch (e: SQLException)
         {
-            printSQLException(e)
+            SQLUtils.printSQLException(e)
             return false
         }
         return true
@@ -52,7 +52,7 @@ class MatchesDAO(private val connect: Connection, private val dbType: DBConnectT
         }
         catch (e: SQLException)
         {
-            printSQLException(e)
+            SQLUtils.printSQLException(e)
             return false
         }
         return true
@@ -89,7 +89,7 @@ class MatchesDAO(private val connect: Connection, private val dbType: DBConnectT
         return match
     }
 
-    fun selectAllPlayers(): List<MatchesWithNames>
+    fun selectAllMatchesWnames(): List<MatchesWithNames>
     {
         val matches= mutableListOf<MatchesWithNames>()
         val result=connect.prepareStatement(SELECT_ALL_MATCHESS).executeQuery()
@@ -127,7 +127,7 @@ class MatchesDAO(private val connect: Connection, private val dbType: DBConnectT
         }
         catch (e: SQLException)
         {
-            printSQLException(e)
+            SQLUtils.printSQLException(e)
             return false
         }
         return true
@@ -148,26 +148,11 @@ class MatchesDAO(private val connect: Connection, private val dbType: DBConnectT
         }
         catch (e: SQLException)
         {
-            printSQLException(e)
+            SQLUtils.printSQLException(e)
             return rowUpdated
         }
         return rowUpdated
     }
 
-    private fun printSQLException(ex: SQLException)
-    {
-        for (e in ex) {
-            if (e is SQLException) {
-                e.printStackTrace(System.err)
-                System.err.println("SQLState: " + e.sqlState)
-                System.err.println("Error Code: " + e.errorCode)
-                System.err.println("Message: " + e.message)
-                var t = ex.cause
-                while (t != null) {
-                    println("Cause: $t")
-                    t = t.cause
-                }
-            }
-        }
-    }
+
 }
