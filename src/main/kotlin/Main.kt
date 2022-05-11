@@ -18,6 +18,7 @@ import org.hexworks.zircon.api.data.Position
 import org.hexworks.zircon.api.data.Tile
 import org.hexworks.zircon.api.extensions.toScreen
 import org.hexworks.zircon.api.graphics.TileGraphics
+import org.jetbrains.exposed.sql.Database
 
 /**
  * Main
@@ -126,5 +127,7 @@ suspend fun main(args: Array<String>)
 
     screen.display()
     screen.theme = ColorThemes.arc()
+
+    Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
 
 }

@@ -13,6 +13,13 @@ object GameTable : IntIdTable()
 
 }
 
+/**
+ * Game ex d a o
+ *
+ * @constructor
+ *
+ * @param id
+ */
 class GameExDAO(id: EntityID<Int>) : IntEntity(id)
 {
     companion object : IntEntityClass<PlayerExDAO>(PlayerTable)
@@ -22,6 +29,27 @@ class GameExDAO(id: EntityID<Int>) : IntEntity(id)
     override fun toString(): String {
         return "GameExDAO(name='$name', rules='$rules', email='$email')"
     }
+}
 
+/**
+ * C r u d_game ex dao
+ *
+ * @constructor Create empty C r u d_game ex dao
+ */
+class CRUD_GameExDao()
+{
+    /**
+     * Insert game
+     *
+     * @param name
+     * @param rules
+     * @param email
+     */
+    fun insertGame(name:String, rules:String, email:String)
+    {
+        val game=GameExDAO.new{
 
+        }
+
+    }
 }

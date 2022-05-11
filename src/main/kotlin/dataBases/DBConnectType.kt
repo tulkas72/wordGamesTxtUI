@@ -3,7 +3,7 @@ package dataBases
 enum class DBConnectType(val baseUrl: String)
 {
     MYSQL("jdbc:mysql://localhost:3306"),
-    SQLITE("jdbc:sqlite:"), // File name, incuding path, must be added later in code
+    SQLITE("jdbc:sqlite:"), // File name, including path, must be added later in code
     POSTGRESQL("jdbc:postgresql://localhost:5432"),
     ORACLE("jdbc:oracle:thin:@localhost:1521:"), //Tested up to here
     NOT_SET(""),
