@@ -1,4 +1,43 @@
+#+TITLE:
+#+AUTHOR:
+#+EMAIL:
+#+DATE:
+#+OPTIONS: texht:t toc:nil num:nil -:nil ^:{} ":nil ':nil
+#+OPTIONS: tex:t
+#+LATEX_CLASS: article
+#+LATEX_HEADER:
+#+LANGUAGE: es
+
+#+BEGIN_COMMENT
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+END_COMMENT
+
+#+LATEX_HEADER_EXTRA: \usepackage{mdframed}
+#+LATEX_HEADER_EXTRA: \BeforeBeginEnvironment{minted}{\begin{mdframed}}
+#+LATEX_HEADER_EXTRA: \AfterEndEnvironment{minted}{\end{mdframed}}
+
+#+LATEX: \setlength\parindent{10pt}
+#+LATEX_HEADER: \usepackage{parskip}
+
+#+latex_header: \usepackage[utf8]{inputenc} %% For unicode chars
+#+LATEX_HEADER: \usepackage{placeins}
+
+#+LATEX_HEADER: \usepackage[margin=2.50cm]{geometry}
+
+#+LaTeX_HEADER: \usepackage[T1]{fontenc}
+#+LaTeX_HEADER: \usepackage{mathpazo}
+#+LaTeX_HEADER: \linespread{1.05}
+#+LaTeX_HEADER: \usepackage[scaled]{helvet}
+#+LaTeX_HEADER: \usepackage{courier}
+
+#+LaTeX_HEADER: \hypersetup{colorlinks=true,linkcolor=blue}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom = {\color[rgb]{0.5,0,0}}}
 * TIENDA
+  :PROPERTIES:
+  :UNNUMBERED: t
+  :END:
+
 > Se evaluará el RA9, CE todos
 
 ** 1. Descripción de la práctica
@@ -104,11 +143,9 @@ aparece a continuación.
     (6,'Proyector TSHB','TOSHIBA G155',5500.00,5);
 
     COMMIT;
-
 #+end_src
 
 ** 2. Evaluación
-
 - Desarrollo de los objetos DAO para acceder a TIENDAS e INVENTARIOS
 - Dado que el dólar se ha encontrado en su valor máximo histórico en
   el país, los proveedores han incrementado un 15% el
@@ -129,10 +166,11 @@ Adicionalmente se tendrá en cuenta:
 - El código realizado es limpio y está comentado.
 - Se cumple requisitos de entrega.
 
-**3. Condiciones de entrega
+** 3. Condiciones de entrega
 
-- Uso de la base de datos h2
-- Se entrega la URL al repositorio, el repositorio será: El nombre del repositorio será `DAW1b_id_iniciales` donde:
+- Uso de la base de datos H2 o SQLite
+- Se entrega la URL al repositorio, el repositorio será: El nombre del
+  repositorio será `DAW1b_id_iniciales` donde:
     - `id`: es el ide de la actividad, por ejemplo BDE (base de datos examen)
     - `iniciales': son tus iniciales por ejemplo EFO las mías.
 
