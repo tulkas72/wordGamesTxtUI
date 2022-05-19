@@ -1,23 +1,28 @@
-import wordGamesConfig.WordGameConfig
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import wordCatalog.ListWordCatalog
-import wordGames.Wordle
-import wordGames.letterSquareState
-import java.io.File
 import com.github.doyaaaaaken.kotlincsv.dsl.context.WriteQuoteMode
 import com.github.doyaaaaaken.kotlincsv.dsl.csvWriter
 import dataBases.DBAccess
 import dataBases.DBConnectType
 import dataBases.Player
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import org.hexworks.zircon.api.*
-import wordGamesConfig.WordGamesCsvImportExport
-
+import org.hexworks.zircon.api.CP437TilesetResources.rexPaint16x16
+import org.hexworks.zircon.api.DrawSurfaces.tileGraphicsBuilder
+import org.hexworks.zircon.api.Shapes.buildRectangle
+import org.hexworks.zircon.api.SwingApplications.startTileGrid
 import org.hexworks.zircon.api.application.AppConfig
+import org.hexworks.zircon.api.color.ANSITileColor
+import org.hexworks.zircon.api.color.TileColor
 import org.hexworks.zircon.api.data.Position
 import org.hexworks.zircon.api.data.Tile
-import org.hexworks.zircon.api.extensions.toScreen
-import org.hexworks.zircon.api.graphics.TileGraphics
+import org.hexworks.zircon.api.graphics.Symbols
+import wordCatalog.ListWordCatalog
+import wordGames.Wordle
+import wordGames.letterSquareState
+import wordGamesConfig.WordGameConfig
+import wordGamesConfig.WordGamesCsvImportExport
+import java.io.File
+
 import org.jetbrains.exposed.sql.Database
 
 /**
@@ -100,34 +105,44 @@ suspend fun main(args: Array<String>)
 
     connect.close()
 
-    val tileGrid = SwingApplications.startTileGrid(
-        AppConfig.newBuilder()
-            .withSize(60, 30)
-            .withDefaultTileset(CP437TilesetResources.rexPaint16x16())
-            .build()
-    )
+    val config = AppConfig.newBuilder()
+        .withDefaultTileset(rexPaint16x16())
+        .build()
 
-    val screen = tileGrid.toScreen()
+    val tileGrid = startTileGrid(config)
 
-    screen.addComponent(
-        Components.label()
-            .withText("Hello, Zircon!")
-            .withPosition(23, 10)
-    )
-
-     val graphics: TileGraphics = DrawSurfaces.tileGraphicsBuilder()
-        .withSize(40, 40)
-        .withTileset(CP437TilesetResources.rexPaint16x16())
+    val background = tileGraphicsBuilder()
+        .withSize(tileGrid.size) // you can fetch the size of a TileGrid like this
         .withFiller(Tile.newBuilder()
-            .withCharacter('x')
+            .withCharacter(Symbols.BULLET)
+            .withBackgroundColor(ANSITileColor.BLUE)
+            .withForegroundColor(ANSITileColor.CYAN)
             .build())
-        .build();
+        .build()
 
-    screen.draw(graphics, Position.zero(),graphics.size)
+    val rectangle = buildRectangle(
+        Position.zero(),
+        tileGrid.size)
+        .toTileGraphics(Tile.newBuilder()
+            .withCharacter(Symbols.BLOCK_DENSE)
+            .withBackgroundColor(TileColor.transparent())
+            .withForegroundColor(ANSITileColor.RED)
+            .build(),
+            config.defaultTileset)
+
+    background.draw(rectangle, Position.zero())
+
+// the default position is (0x0) which is the top left corner
+
+// the default position is (0x0) which is the top left corner
+    tileGrid.draw(background, Position.zero())
+
+
+   /* screen.draw(graphics, Position.zero(),graphics.size)
 
     screen.display()
-    screen.theme = ColorThemes.arc()
+    screen.theme = ColorThemes.arc()*/
 
-    Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
+    //Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver")
 
 }
